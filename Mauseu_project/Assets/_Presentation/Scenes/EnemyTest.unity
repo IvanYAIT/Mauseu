@@ -1438,7 +1438,6 @@ GameObject:
   - component: {fileID: 2043895172}
   - component: {fileID: 2043895171}
   - component: {fileID: 2043895177}
-  - component: {fileID: 2043895178}
   - component: {fileID: 2043895176}
   m_Layer: 8
   m_Name: Enemy
@@ -1470,7 +1469,7 @@ MonoBehaviour:
   timeBetweenAttacks: 1
   attackRange: 1.5
   damage: 2
-  monster: {fileID: 2043895178}
+  monster: {fileID: 11400000, guid: e7dd9b6803c6c73459030b906283c062, type: 2}
 --- !u!136 &2043895172
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1604,18 +1603,6 @@ MonoBehaviour:
     m_Bits: 64
   enemyComponent: {fileID: 2043895171}
   visibleTargets: []
---- !u!114 &2043895178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2043895170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60ecc1ee4c601f3439c87473ef269099, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
