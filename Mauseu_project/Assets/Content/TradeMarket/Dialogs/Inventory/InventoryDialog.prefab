@@ -326,6 +326,7 @@ MonoBehaviour:
   _itemPrefab: {fileID: 4726082161933433054, guid: 6f481e5cbe2c6784c9bef2c5f70681ab,
     type: 3}
   _itemsContainer: {fileID: 417311016052453861}
+  _itemsData: {fileID: 11400000, guid: c824804f8a1db6c449796c5cbef89afd, type: 2}
 --- !u!1 &3744698847462839664
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,6 +739,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1575661929278431045, guid: 8fceb6fbb988615448a4e3c303a94736,
         type: 3}
+      propertyPath: m_IsOn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575661929278431045, guid: 8fceb6fbb988615448a4e3c303a94736,
+        type: 3}
       propertyPath: m_Group
       value: 
       objectReference: {fileID: 7317191528712210239}
@@ -890,7 +896,7 @@ PrefabInstance:
     - target: {fileID: 1575661929278431045, guid: 8fceb6fbb988615448a4e3c303a94736,
         type: 3}
       propertyPath: m_IsOn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1575661929278431045, guid: 8fceb6fbb988615448a4e3c303a94736,
         type: 3}

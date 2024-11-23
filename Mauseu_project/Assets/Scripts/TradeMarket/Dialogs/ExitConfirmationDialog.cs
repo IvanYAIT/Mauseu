@@ -6,7 +6,5 @@ namespace TradeMarket.Dialogs
     public class ExitConfirmationDialog : DialogBase
     {
         public void Confirm() => Application.Quit();
-
-        public void Cancel() => Hide();
     }
 }

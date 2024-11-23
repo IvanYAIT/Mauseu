@@ -14,7 +14,14 @@ namespace Services.Inventory.Data
         public Dictionary<ItemType, int> Execute()
         {
             var path = Path.Join(Application.persistentDataPath, ContainerName);
-            return JsonConvert.DeserializeObject<Dictionary<ItemType, int>>(path);
+
+            if (File.Exists(path))
+            {
+                var data = File.ReadAllText(path);
+                return JsonConvert.DeserializeObject<Dictionary<ItemType, int>>(data);
+            }
+
+            return new Dictionary<ItemType, int>();
         }
     }
 }

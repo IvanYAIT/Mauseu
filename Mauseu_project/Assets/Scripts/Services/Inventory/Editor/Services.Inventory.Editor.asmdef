@@ -2,7 +2,8 @@
     "name": "Services.Inventory.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:53fa91a7de9f32548b2e4ac06655bdad"
+        "GUID:53fa91a7de9f32548b2e4ac06655bdad",
+        "GUID:e030107ca5f28b549ba87dff10369708"
     ],
     "includePlatforms": [
         "Editor"
