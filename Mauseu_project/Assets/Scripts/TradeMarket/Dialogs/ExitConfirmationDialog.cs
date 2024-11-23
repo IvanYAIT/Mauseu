@@ -1,9 +1,12 @@
 using Dependencies.ChaserLib.Dialogs;
 using UnityEngine;
 
-public class ExitConfirmationDialog : DialogBase
+namespace TradeMarket.Dialogs
 {
-    public void Confirm() => Application.Quit();
+    public class ExitConfirmationDialog : DialogBase
+    {
+        public void Confirm() => Application.Quit();
 
-    public void Cancel() => Hide();
+        public void Cancel() => Hide();
+    }
 }

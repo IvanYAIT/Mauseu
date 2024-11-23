@@ -6,7 +6,7 @@ namespace Infrastructure
     public class Bootstrapper : MonoBehaviour
     {
         //[SerializeField] private DialogsLauncher _dialogsLauncher;
-        [SerializeField] private Character.CharacterController _characterController;
+        [SerializeField] private Services.Character.CharacterController _characterController;
         
         private Game _game;
 

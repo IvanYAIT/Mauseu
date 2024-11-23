@@ -1,13 +1,12 @@
 {
-    "name": "Services.Inventory",
+    "name": "Services.Inventory.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:e5a89fbc0b7278843b6e02155ec08078",
-        "GUID:999f83214f3034d44848a0f524c81a4a",
-        "GUID:e030107ca5f28b549ba87dff10369708",
-        "GUID:cfa0a0afcad415343a47c701fe78ba3f"
+        "GUID:53fa91a7de9f32548b2e4ac06655bdad"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

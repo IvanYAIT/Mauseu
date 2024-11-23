@@ -1,7 +1,7 @@
 using Services.Input;
 using UnityEngine;
 
-namespace Character
+namespace Services.Character
 {
     public class CharacterController : MonoBehaviour
     {
@@ -22,8 +22,8 @@ namespace Character
         [field: SerializeField] public bool CanJump { get; private set; }
 
         
-        private bool IsSprinting => CanSprint && Input.GetKey(SprintKey);
-        private bool IsJumpting => _characterController.isGrounded && Input.GetKey(JumpKey);
+        private bool IsSprinting => CanSprint && UnityEngine.Input.GetKey(SprintKey);
+        private bool IsJumpting => _characterController.isGrounded && UnityEngine.Input.GetKey(JumpKey);
         
         private const KeyCode SprintKey = KeyCode.LeftShift;
         private const KeyCode JumpKey = KeyCode.Space;
@@ -91,10 +91,10 @@ namespace Character
     
         private void HandleMouseLock()
         {
-            _rotationX -= Input.GetAxis("Mouse Y") * _lookSpeedY;
+            _rotationX -= UnityEngine.Input.GetAxis("Mouse Y") * _lookSpeedY;
             _rotationX = Mathf.Clamp(_rotationX, -_upperLookLimit, _lowerLookLimit);
             _playerCamera.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * _lookSpeedX, 0);
+            transform.rotation *= Quaternion.Euler(0, UnityEngine.Input.GetAxis("Mouse X") * _lookSpeedX, 0);
         }
 
         private void ApplyFinalMovements()

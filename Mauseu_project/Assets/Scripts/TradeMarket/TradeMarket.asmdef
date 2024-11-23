@@ -1,7 +1,13 @@
 {
     "name": "TradeMarket",
     "rootNamespace": "",
-    "references": ["GUID:999f83214f3034d44848a0f524c81a4a","GUID:e030107ca5f28b549ba87dff10369708","GUID:3575f273b924366499552bc7a3fa1098"],
+    "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:999f83214f3034d44848a0f524c81a4a",
+        "GUID:e030107ca5f28b549ba87dff10369708",
+        "GUID:3575f273b924366499552bc7a3fa1098",
+        "GUID:53fa91a7de9f32548b2e4ac06655bdad"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

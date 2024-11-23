@@ -1,4 +1,5 @@
-﻿using Services.Input;
+﻿using Services.Character;
+using Services.Input;
 
 namespace Infrastructure
 {
@@ -6,7 +7,7 @@ namespace Infrastructure
     {
         public static IInputService InputService;
 
-        public Game(Character.CharacterController characterController)
+        public Game(CharacterController characterController)
         {
             InputService = new InputService();
             characterController.Init(InputService);
