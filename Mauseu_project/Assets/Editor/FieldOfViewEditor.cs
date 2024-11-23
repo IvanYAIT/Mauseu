@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEditor;
+using EnemyAI;
 
 [CustomEditor (typeof (FieldOfView))]
 public class FieldOfViewEditor : Editor {
