@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace MainMenuUI
 {
-    public class MainMenu : MonoBehaviour
+    public class HUD : MonoBehaviour
     {
         public void Play()
         {

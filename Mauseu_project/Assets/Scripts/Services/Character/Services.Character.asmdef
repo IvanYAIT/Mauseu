@@ -1,0 +1,16 @@
+{
+    "name": "Services.Character",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c9ff3036785475e4889cd17009ee603c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
