@@ -25,7 +25,7 @@ namespace TradeMarket.Dialogs.TradeMarket
             _nameLabel.text = monsterName;
             MonsterType = monsterType;
             _description = monsterDescription;
-            _priceLabel.text = monsterPrice.ToString();
+            _priceLabel.text = $"Sell for: {monsterPrice}";
         }
     }
 }

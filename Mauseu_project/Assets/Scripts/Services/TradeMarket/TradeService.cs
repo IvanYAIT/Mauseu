@@ -16,16 +16,13 @@ namespace Services.TradeMarket
 
         public TradeService(ItemsPriceData itemsPrices) => _itemsPrices = itemsPrices;
 
-        public int GetPrice(ItemType itemType) => throw new System.NotImplementedException();
+        public int GetPrice(ItemType itemType) => _itemsPrices.GetPrice(itemType);
 
-        public void SellItem(ItemType itemType)
-        {
-            SellItem(itemType, 1);
-        }
+        public void SellItem(ItemType itemType) => SellItem(itemType, 1);
 
         public void SellItem(ItemType itemType, int amount)
         {
-            var cost = _itemsPrices.GetPrice(itemType);
+            var cost = GetPrice(itemType);
             WalletService.Add(cost * amount);
             InventoryService.RemoveItem(itemType, amount);
         }

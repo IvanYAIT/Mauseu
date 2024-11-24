@@ -1,9 +1,8 @@
-﻿using Services.Wallet;
-using Shared.DataProvider.Commands;
+﻿using Shared.DataProvider.Commands;
 
 namespace Services.TradeMarket.Commands
 {
-    public class LoadWalletCommand : LoadDataCommand<WalletData>
+    public class LoadWalletCommand : LoadDataCommand<int>
     {
         protected override string GetContainerName() => "WalletData.json";
     }

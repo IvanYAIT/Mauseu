@@ -6,12 +6,15 @@ using Services.Inventory;
 using Services.Inventory.Items;
 using Services.Inventory.Monsters;
 using Services.TradeMarket;
+using Services.Wallet;
+using TMPro;
 using UnityEngine;
 
 namespace TradeMarket.Dialogs.TradeMarket
 {
     public class TradeMarketDialog : DialogBase
     {
+        [SerializeField] private TMP_Text _wallet;
         [SerializeField] private MonsterView _prefab;
         [SerializeField] private Transform _container;
         [SerializeField] private MonstersData _data;
@@ -19,11 +22,14 @@ namespace TradeMarket.Dialogs.TradeMarket
         private static ServiceLocator Locator => ServiceLocator.Instance;
         private static IInventoryService InventoryService => Locator.Get<IInventoryService>();
         private static ITradeService TradeService => Locator.Get<ITradeService>();
+        private static IWalletService WalletService => Locator.Get<IWalletService>();
 
         private readonly List<MonsterView> _instances = new();
 
         public override void Show()
         {
+            UpdateWallet();
+
             //Replace item type with flags
             var capturedMonsters = InventoryService.GetAllItems()
                 .Where(i => i.Key is ItemType.TestMonster1 or ItemType.TestMonster2);
@@ -45,9 +51,15 @@ namespace TradeMarket.Dialogs.TradeMarket
         {
             var type = view.MonsterType;
             TradeService.SellItem(type);
-            
+            UpdateWallet();
+
             Destroy(view.gameObject);
             _instances.Remove(view);
+        }
+
+        private void UpdateWallet()
+        {
+            _wallet.text = WalletService.Get().ToString();
         }
     }
 }
