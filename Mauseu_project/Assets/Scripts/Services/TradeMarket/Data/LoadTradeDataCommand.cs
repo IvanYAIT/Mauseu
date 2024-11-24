@@ -5,9 +5,9 @@ using Newtonsoft.Json;
 using Services.Inventory.Items;
 using UnityEngine;
 
-namespace Services.Inventory.Data
+namespace Services.TradeMarket.Data
 {
-    public class LoadDataCommand : ICommand<Dictionary<ItemType, int>>
+    public class LoadTradeDataCommand : ICommand<Dictionary<ItemType, int>>
     {
         private const string ContainerName = "Inventory.json";
 

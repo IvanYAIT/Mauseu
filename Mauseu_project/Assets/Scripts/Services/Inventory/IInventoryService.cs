@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
-using Services.Inventory.Items;
+﻿using Services.Inventory.Items;
 
 namespace Services.Inventory
 {
     public interface IInventoryService
     {
-        public Dictionary<ItemType, int> GetAllItems();
+        public InventoryData GetAllItems();
 
         public void AddItem(ItemType type, int amount);
-
         public void AddItem(ItemType type);
+        
+        public void RemoveItem(ItemType type, int amount);
+        public void RemoveItem(ItemType type);
     }
 }

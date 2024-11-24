@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using Services.Inventory.Commands;
 using Services.Inventory.Items;
 
 namespace Services.Inventory
 {
     public class InventoryService : IInventoryService
     {
-        private readonly Dictionary<ItemType, int> _items;
+        private readonly InventoryData _items;
 
-        public InventoryService(Dictionary<ItemType, int> data) => _items = data;
+        public InventoryService(InventoryData data) => _items = data;
 
-        public Dictionary<ItemType, int> GetAllItems() => _items;
+        public InventoryData GetAllItems() => _items;
 
         public void AddItem(ItemType type, int amount)
         {
@@ -17,11 +17,23 @@ namespace Services.Inventory
                 _items.Add(type, amount);
 
             _items[type] += amount;
+            
+            Save();
         }
 
-        public void AddItem(ItemType type)
+        public void AddItem(ItemType type) => AddItem(type, 1);
+
+        public void RemoveItem(ItemType type, int amount)
         {
-            AddItem(type, 1);
+            _items[type] -= amount;
+            Save();
+        }
+
+        public void RemoveItem(ItemType type) => RemoveItem(type, 1);
+
+        private void Save()
+        {
+            new SaveInventoryDataCommand(_items).Execute();
         }
     }
 }

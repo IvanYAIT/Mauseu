@@ -2,7 +2,7 @@ using Dependencies.ChaserLib.Dialogs;
 using Dependencies.ChaserLib.ServiceLocator;
 using Dependencies.ChaserLib.Tasks;
 using Services.Inventory;
-using Services.Inventory.Data;
+using Services.Inventory.Commands;
 using UnityEngine;
 
 namespace TradeMarket
@@ -26,7 +26,7 @@ namespace TradeMarket
 
         private static IInventoryService LoadInventory()
         {
-            var data = new LoadDataCommand().Execute();
+            var data = new LoadInventoryDataCommand().Execute();
             return new InventoryService(data);
         }
     }

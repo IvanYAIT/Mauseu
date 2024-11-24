@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Dependencies.ChaserLib.Dialogs;
 using Dependencies.ChaserLib.ServiceLocator;
 using Services.Inventory;
-using Services.Inventory.Data;
+using Services.Inventory.Commands;
 using Services.Inventory.Items;
 using TradeMarket.Dialogs.Inventory.Elements;
 using UnityEngine;
@@ -67,7 +67,7 @@ namespace TradeMarket.Dialogs.Inventory
 
         public override void Hide()
         {
-            new SaveDataCommand(InventoryService.GetAllItems()).Execute();
+            new SaveInventoryDataCommand(InventoryService.GetAllItems()).Execute();
             base.Hide();
         }
 

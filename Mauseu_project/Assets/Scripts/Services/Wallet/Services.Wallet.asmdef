@@ -1,14 +1,8 @@
 {
-    "name": "TradeMarket",
+    "name": "Services.Wallet",
     "rootNamespace": "",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:999f83214f3034d44848a0f524c81a4a",
-        "GUID:e030107ca5f28b549ba87dff10369708",
-        "GUID:3575f273b924366499552bc7a3fa1098",
-        "GUID:53fa91a7de9f32548b2e4ac06655bdad",
-        "GUID:6b44886240d8f5b4ba43ff3255d46cac",
-        "GUID:5c12fe5c58a636d4b950e3f00777e7ad",
+        "GUID:cfa0a0afcad415343a47c701fe78ba3f",
         "GUID:e7d1ee7ede0a5274cb8e217140bb0957"
     ],
     "includePlatforms": [],

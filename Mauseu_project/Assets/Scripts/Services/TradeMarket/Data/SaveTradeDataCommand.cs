@@ -5,15 +5,15 @@ using Newtonsoft.Json;
 using Services.Inventory.Items;
 using UnityEngine;
 
-namespace Services.Inventory.Data
+namespace Services.TradeMarket.Data
 {
-    public class SaveDataCommand : ICommand
+    public class SaveTradeDataCommand : ICommand
     {
         private const string ContainerName = "Inventory.json";
 
         private readonly Dictionary<ItemType, int> _data;
         
-        public SaveDataCommand(Dictionary<ItemType, int> data) => _data = data;
+        public SaveTradeDataCommand(Dictionary<ItemType, int> data) => _data = data;
 
         public void Execute()
         {
