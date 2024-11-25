@@ -238,6 +238,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Price
       objectReference: {fileID: 0}
+    - target: {fileID: 6473157119847549741, guid: a569954aa776c7045836289c87c1d074,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6473157119847549741, guid: a569954aa776c7045836289c87c1d074,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6473157119847549741, guid: a569954aa776c7045836289c87c1d074,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2250090873127102759}
+    - target: {fileID: 6473157119847549741, guid: a569954aa776c7045836289c87c1d074,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6473157119847549741, guid: a569954aa776c7045836289c87c1d074,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Sell
+      objectReference: {fileID: 0}
+    - target: {fileID: 6473157119847549741, guid: a569954aa776c7045836289c87c1d074,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TradeMarket.Dialogs.TradeMarket.MonsterView, TradeMarket
+      objectReference: {fileID: 0}
+    - target: {fileID: 6473157119847549741, guid: a569954aa776c7045836289c87c1d074,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8064845698596470945, guid: a569954aa776c7045836289c87c1d074,
         type: 3}
       propertyPath: m_Pivot.x

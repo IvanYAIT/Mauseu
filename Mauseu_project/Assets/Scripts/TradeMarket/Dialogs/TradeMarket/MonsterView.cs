@@ -27,5 +27,7 @@ namespace TradeMarket.Dialogs.TradeMarket
             _description = monsterDescription;
             _priceLabel.text = $"Sell for: {monsterPrice}";
         }
+
+        public void Sell() => OnSellClickedSignal.Dispatch(this);
     }
 }

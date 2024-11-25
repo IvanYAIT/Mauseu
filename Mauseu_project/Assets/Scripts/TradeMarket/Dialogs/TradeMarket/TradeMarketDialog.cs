@@ -36,12 +36,18 @@ namespace TradeMarket.Dialogs.TradeMarket
 
             foreach (var monster in capturedMonsters)
             {
-                var data = _data.GetDataByType(monster.Key);
-                var view = Instantiate(_prefab, _container);
-                var price = TradeService.GetPrice(data.ItemType);
-                view.SetData(data.ItemType, data.Icon, data.Name, data.Description, price);
-                view.OnSellClickedSignal.AddListener(SellMonster);
-                _instances.Add(view);
+                if (monster.Value == 0)
+                    continue;
+
+                for (var i = 0; i < monster.Value; i++)
+                {
+                    var data = _data.GetDataByType(monster.Key);
+                    var view = Instantiate(_prefab, _container);
+                    var price = TradeService.GetPrice(data.ItemType);
+                    view.SetData(data.ItemType, data.Icon, data.Name, data.Description, price);
+                    view.OnSellClickedSignal.AddListener(SellMonster);
+                    _instances.Add(view);
+                }
             }
 
             base.Show();
