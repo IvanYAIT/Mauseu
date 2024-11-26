@@ -7,7 +7,21 @@ namespace Services.TradeMarket.Data
     public class ItemPriceData
     {
         public ItemType Type;
+        public ItemCategory Category;
         public int Cost;
-        [Range(0, 10)] public int Valuability;
+        [Range(1, 10)] public int Valuability;
+        public bool HasFlexiblePrice;
+
+        public ItemPriceData Clone()
+        {
+            return new ItemPriceData
+            {
+                Type = Type,
+                Category = Category,
+                Cost = Cost,
+                Valuability = Valuability,
+                HasFlexiblePrice = HasFlexiblePrice
+            };
+        }
     }
 }

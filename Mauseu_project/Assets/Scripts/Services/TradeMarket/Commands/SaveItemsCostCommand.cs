@@ -3,9 +3,9 @@ using Shared.DataProvider.Commands;
 
 namespace Services.TradeMarket.Commands
 {
-    public class SaveItemsCostCommand : SaveDataCommand<ItemsPriceData>
+    public class SaveItemsCostCommand : SaveDataCommand<ItemPriceData[]>
     {
-        public SaveItemsCostCommand(ItemsPriceData data) : base(data)
+        public SaveItemsCostCommand(ItemPriceData[] data) : base(data)
         {
         }
         

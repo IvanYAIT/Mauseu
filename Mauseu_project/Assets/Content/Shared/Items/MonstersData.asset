@@ -23,3 +23,8 @@ MonoBehaviour:
     Icon: {fileID: 0}
     Name: Evaka 2
     Description: Ochen Strashaya Ebaka
+  - ItemType: 6
+    MonsterType: 1
+    Icon: {fileID: 0}
+    Name: Super Ebaka
+    Description: Super Scary Ebaka

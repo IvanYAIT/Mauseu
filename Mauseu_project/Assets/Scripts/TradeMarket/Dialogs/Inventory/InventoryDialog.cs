@@ -15,7 +15,7 @@ namespace TradeMarket.Dialogs.Inventory
         [System.Serializable]
         private struct CategoryToggle
         {
-            public CategoryType Category;
+            public ItemCategory Category;
             public Toggle Toggle;
         }
 
@@ -27,9 +27,9 @@ namespace TradeMarket.Dialogs.Inventory
         private static ServiceLocator Locator => ServiceLocator.Instance;
         private static IInventoryService InventoryService => Locator.Get<IInventoryService>();
 
-        private readonly Dictionary<CategoryType, List<ItemView>> _itemsByCategory = new();
+        private readonly Dictionary<ItemCategory, List<ItemView>> _itemsByCategory = new();
         
-        private CategoryType _currentCategory;
+        private ItemCategory _currentItemCategory;
         
         public override void Show()
         {
@@ -47,9 +47,9 @@ namespace TradeMarket.Dialogs.Inventory
 
             var items = InventoryService.GetAllItems();
             
-            _itemsByCategory.Add(CategoryType.Weapon, new List<ItemView>());
-            _itemsByCategory.Add(CategoryType.Consumables, new List<ItemView>());
-            _itemsByCategory.Add(CategoryType.Monsters, new List<ItemView>());
+            _itemsByCategory.Add(ItemCategory.Weapon, new List<ItemView>());
+            _itemsByCategory.Add(ItemCategory.Consumables, new List<ItemView>());
+            _itemsByCategory.Add(ItemCategory.Monsters, new List<ItemView>());
             
             foreach (var item in items)
             {
@@ -61,7 +61,7 @@ namespace TradeMarket.Dialogs.Inventory
                 _itemsByCategory[data.Category].Add(instance);
             }
             
-            ShowCategory(CategoryType.Weapon);
+            ShowCategory(ItemCategory.Weapon);
             base.Show();
         }
 
@@ -73,16 +73,16 @@ namespace TradeMarket.Dialogs.Inventory
 
         private void DisableCurrentCategory()
         {
-            var items = _itemsByCategory[_currentCategory];
+            var items = _itemsByCategory[_currentItemCategory];
             foreach (var item in items)
             {
                 item.gameObject.SetActive(false);
             }
         }
 
-        private void ShowCategory(CategoryType newCategory)
+        private void ShowCategory(ItemCategory newCategory)
         {
-            _currentCategory = newCategory;
+            _currentItemCategory = newCategory;
             var items = _itemsByCategory[newCategory];
             foreach (var item in items)
             {

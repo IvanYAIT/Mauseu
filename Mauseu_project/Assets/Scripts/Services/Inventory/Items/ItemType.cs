@@ -6,6 +6,7 @@
         TestWeapon2 = 1,
         TestMonster1 = 2,
         TestMonster2 = 3,
+        TestMonster3 = 6,
         TestConsumable1 = 4,
         TestConsumable2 = 5,
     }

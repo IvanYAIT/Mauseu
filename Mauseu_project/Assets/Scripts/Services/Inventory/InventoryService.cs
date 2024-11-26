@@ -11,13 +11,15 @@ namespace Services.Inventory
 
         public InventoryData GetAllItems() => _items;
 
+        public int GetAmount(ItemType type) => _items[type];
+
         public void AddItem(ItemType type, int amount)
         {
             if (!_items.ContainsKey(type))
                 _items.Add(type, amount);
 
             _items[type] += amount;
-            
+
             Save();
         }
 

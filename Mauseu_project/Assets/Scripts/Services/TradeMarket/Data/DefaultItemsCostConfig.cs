@@ -7,6 +7,16 @@ namespace Services.TradeMarket.Data
     {
         [SerializeField] private ItemPriceData[] _items;
 
-        public ItemPriceData[] GetAllItems() => _items;
+        public ItemPriceData[] GetAllItems()
+        {
+            var targetItems = new ItemPriceData[_items.Length];
+
+            for (var i = 0; i < _items.Length; i++)
+            {
+                targetItems[i] = _items[i].Clone();
+            }
+
+            return targetItems;
+        }
     }
 }

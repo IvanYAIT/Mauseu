@@ -28,6 +28,7 @@ namespace Services.Inventory.Editor
         {
             InventoryService.AddItem(ItemType.TestMonster1, 1);
             InventoryService.AddItem(ItemType.TestMonster2, 2);
+            InventoryService.AddItem(ItemType.TestMonster3, 2);
         }
     }
 }

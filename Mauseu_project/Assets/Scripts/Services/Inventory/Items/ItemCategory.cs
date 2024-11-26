@@ -1,6 +1,6 @@
 namespace Services.Inventory.Items
 {
-    public enum CategoryType
+    public enum ItemCategory
     {
         Weapon = 0,
         Consumables = 1,

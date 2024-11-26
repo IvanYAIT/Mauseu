@@ -25,9 +25,11 @@ namespace TradeMarket.Dialogs.TradeMarket
             _nameLabel.text = monsterName;
             MonsterType = monsterType;
             _description = monsterDescription;
-            _priceLabel.text = $"Sell for: {monsterPrice}";
+            SetPrice(monsterPrice);
         }
 
         public void Sell() => OnSellClickedSignal.Dispatch(this);
+
+        public void SetPrice(int monsterPrice) => _priceLabel.text = $"Sell for: {monsterPrice}";
     }
 }

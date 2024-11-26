@@ -14,8 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _items:
   - Type: 2
+    Category: 2
     Cost: 100
     Valuability: 5
+    HasFlexiblePrice: 1
   - Type: 3
+    Category: 2
     Cost: 150
     Valuability: 10
+    HasFlexiblePrice: 1
+  - Type: 6
+    Category: 2
+    Cost: 1000
+    Valuability: 1
+    HasFlexiblePrice: 1

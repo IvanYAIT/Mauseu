@@ -8,9 +8,9 @@ namespace Services.Inventory.Items
     {
         [SerializeField] private ItemData[] _items;
 
-        public ItemData GetItemData(ItemType type)
-        {
-            return _items.First(i => i.Type == type);
-        }
+        public ItemData GetItemData(ItemType type) => _items.First(i => i.Type == type);
+
+        public ItemData[] GetAllItemsInCategory(ItemCategory category) =>
+            _items.Where(i => i.Category == category).ToArray();
     }
 }

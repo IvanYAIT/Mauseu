@@ -6,6 +6,8 @@ namespace Services.Inventory
     {
         public InventoryData GetAllItems();
 
+        public int GetAmount(ItemType type);
+        
         public void AddItem(ItemType type, int amount);
         public void AddItem(ItemType type);
         

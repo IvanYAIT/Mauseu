@@ -15,31 +15,43 @@ MonoBehaviour:
   _items:
   - Name: TestWeapon_1
     Description: TestWeapon_1_Description
+    Icon: {fileID: 0}
     Type: 0
     Category: 0
     IsStackable: 0
   - Name: TestWeapon_2
     Description: TestWeapon_2_Description
+    Icon: {fileID: 0}
     Type: 1
     Category: 0
     IsStackable: 0
-  - Name: TestMonster_1
-    Description: TestMonster_1_Description
-    Type: 2
-    Category: 2
-    IsStackable: 0
-  - Name: TestMonster_2
-    Description: TestMonster_2_Description
-    Type: 3
-    Category: 2
-    IsStackable: 0
   - Name: TestConsumable_1
     Description: TestConsumable_1_Description
+    Icon: {fileID: 0}
     Type: 4
     Category: 1
     IsStackable: 1
   - Name: TestConsumable_2
     Description: TestConsumable_2_Description
+    Icon: {fileID: 0}
     Type: 5
     Category: 1
     IsStackable: 1
+  - Name: TestMonster_1
+    Description: TestMonster_1_Description
+    Icon: {fileID: 0}
+    Type: 2
+    Category: 2
+    IsStackable: 0
+  - Name: TestMonster_2
+    Description: TestMonster_2_Description
+    Icon: {fileID: 0}
+    Type: 3
+    Category: 2
+    IsStackable: 0
+  - Name: TestMonster_3
+    Description: TestMonster_3_Description
+    Icon: {fileID: 0}
+    Type: 6
+    Category: 2
+    IsStackable: 0

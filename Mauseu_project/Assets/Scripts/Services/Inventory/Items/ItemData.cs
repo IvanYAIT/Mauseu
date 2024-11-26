@@ -9,7 +9,7 @@ namespace Services.Inventory.Items
         public string Description;
         public Sprite Icon;
         public ItemType Type;
-        public CategoryType Category;
+        public ItemCategory Category;
         public bool IsStackable;
     }
 }

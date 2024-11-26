@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Dependencies.ChaserLib.Dialogs;
 using Dependencies.ChaserLib.ServiceLocator;
 using Services.Inventory;
@@ -17,7 +16,8 @@ namespace TradeMarket.Dialogs.TradeMarket
         [SerializeField] private TMP_Text _wallet;
         [SerializeField] private MonsterView _prefab;
         [SerializeField] private Transform _container;
-        [SerializeField] private MonstersData _data;
+        [SerializeField] private MonstersData _monstersData;
+        [SerializeField] private ItemsData _itemsData;
 
         private static ServiceLocator Locator => ServiceLocator.Instance;
         private static IInventoryService InventoryService => Locator.Get<IInventoryService>();
@@ -29,21 +29,22 @@ namespace TradeMarket.Dialogs.TradeMarket
         public override void Show()
         {
             UpdateWallet();
-
-            //Replace item type with flags
-            var capturedMonsters = InventoryService.GetAllItems()
-                .Where(i => i.Key is ItemType.TestMonster1 or ItemType.TestMonster2);
-
-            foreach (var monster in capturedMonsters)
+       
+            var monstersData = _itemsData.GetAllItemsInCategory(ItemCategory.Monsters);
+            
+            foreach (var monster in monstersData)
             {
-                if (monster.Value == 0)
+                var amountInInventory = InventoryService.GetAmount(monster.Type);
+                
+                if (amountInInventory == 0)
                     continue;
 
-                for (var i = 0; i < monster.Value; i++)
+                for (var i = 0; i < amountInInventory; i++)
                 {
-                    var data = _data.GetDataByType(monster.Key);
+                    var data = _monstersData.GetDataByType(monster.Type);
                     var view = Instantiate(_prefab, _container);
                     var price = TradeService.GetPrice(data.ItemType);
+                    
                     view.SetData(data.ItemType, data.Icon, data.Name, data.Description, price);
                     view.OnSellClickedSignal.AddListener(SellMonster);
                     _instances.Add(view);
@@ -57,15 +58,23 @@ namespace TradeMarket.Dialogs.TradeMarket
         {
             var type = view.MonsterType;
             TradeService.SellItem(type);
-            UpdateWallet();
 
             Destroy(view.gameObject);
             _instances.Remove(view);
+            
+            UpdateWallet();
+            UpdatePrices();
         }
 
-        private void UpdateWallet()
+        private void UpdateWallet() => _wallet.text = WalletService.Get().ToString();
+
+        private void UpdatePrices()
         {
-            _wallet.text = WalletService.Get().ToString();
+            foreach (var instance in _instances)
+            {
+                var newPrice = TradeService.GetPrice(instance.MonsterType);
+                instance.SetPrice(newPrice);
+            }
         }
     }
 }
