@@ -13,12 +13,14 @@ namespace Shared.DataProvider.Commands
             var path = Path.Join(Application.persistentDataPath, containerName);
 
             if (!File.Exists(path))
-                return default;
+                return GetDefault();
 
             var data = File.ReadAllText(path);
             return JsonConvert.DeserializeObject<T>(data);
         }
-
+        
+        protected abstract T GetDefault();
+        
         protected abstract string GetContainerName();
     }
 }

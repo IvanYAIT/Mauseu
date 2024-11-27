@@ -47,8 +47,7 @@ namespace TradeMarket
 
         private ITradeService LoadTradeService()
         {
-            var data = new LoadItemsCostCommand().Execute()
-                       ?? _defaultItemsCostConfig.GetAllItems();
+            var data = new LoadItemsCostCommand(_defaultItemsCostConfig.GetAllItems()).Execute();
             var itemPricesData = new ItemsPriceData(data);
             return new TradeService(itemPricesData);
         }
