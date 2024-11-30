@@ -32,8 +32,6 @@ namespace PlayerInventory
                 if (Physics.Raycast(head.position, head.forward, out hit, distanceToPickUp, monsterLayerMask))
                 {
                     Enemy monster = hit.transform.gameObject.GetComponent<Enemy>();
-                    Debug.Log(monster);
-                    Debug.Log(monster.IsCatched);
                     if (monster.IsCatched)
                         if (inventory.TakeMonster(monster.GetData()))
                             monster.gameObject.SetActive(false);

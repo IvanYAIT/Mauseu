@@ -31,7 +31,26 @@ namespace PlayerInventory
 
         public void DropMonster()
         {
+            if(_currentMonster == null)
+            {
+                _currentMonster = null;
+                isMonsterPickedUp = false;
+                monsterIcon.SetActive(false);
+            }
+        }
 
+        public bool PutMonster(out MonsterData monsterData)
+        {
+            if (_currentMonster == null)
+            {
+                monsterData = _currentMonster;
+                _currentMonster = null;
+                isMonsterPickedUp = false;
+                monsterIcon.SetActive(false);
+                return true;
+            }
+            monsterData = null;
+            return false;
         }
 
         public bool AddItem(Item itemToAdd)

@@ -1,7 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MonsterData", menuName = "SO/NewMonsterData")]
-public class MonsterData : ScriptableObject
+public class MonsterData : MonoBehaviour
 {
-    
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }

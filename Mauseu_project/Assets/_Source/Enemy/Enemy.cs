@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.AI;
 
 namespace EnemyAI
@@ -77,7 +76,7 @@ namespace EnemyAI
 
             Vector3 distanceToWalkPoint = transform.position - _walkPoint;
 
-            if (distanceToWalkPoint.magnitude < 1f)
+            if (distanceToWalkPoint.magnitude < 1.5f)
             {
                 walkPointSet = false;
             }
@@ -87,7 +86,14 @@ namespace EnemyAI
         {
             float randomZ = Random.Range(-walkPointRange, walkPointRange);
             float randomX = Random.Range(-walkPointRange, walkPointRange);
+
             _walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(_walkPoint, out hit, 100f, NavMesh.AllAreas))
+            {
+                _walkPoint = hit.position;
+            }
 
             if (Physics.Raycast(_walkPoint, -transform.up, 2f, groundLayer))
             {
