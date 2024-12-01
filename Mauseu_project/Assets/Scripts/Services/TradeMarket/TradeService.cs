@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Dependencies.ChaserLib.ServiceLocator;
 using Services.Inventory;
@@ -30,12 +31,25 @@ namespace Services.TradeMarket
             var cost = data.Cost;
 
             WalletService.Add(cost * amount);
-            InventoryService.RemoveItem(itemType, amount);
+
+            if (data.Category is not (ItemCategory.Weapon or ItemCategory.Monsters))
+            {
+                InventoryService.RemoveItem(itemType, amount);
+            }
 
             if (!data.HasFlexiblePrice)
                 return;
 
             FlexPrice(data.Category, itemType);
+        }
+
+        public void SellItem(Guid id)
+        {
+            var item = InventoryService.GetAllUniqItems().First(i => i.Id == id);
+            var itemType = item.Type;
+            
+            SellItem(itemType);
+            InventoryService.RemoveItem(id);
         }
 
         private void FlexPrice(ItemCategory category, ItemType type)

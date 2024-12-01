@@ -14,18 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levels:
   - Cost: 100
-    Resources:
-    - Type: 6
-      Amount: 1
+    Resources: []
   - Cost: 300
     Resources:
-    - Type: 6
-      Amount: 2
     - Type: 7
       Amount: 2
+    - Type: 8
+      Amount: 4
   - Cost: 500
     Resources:
-    - Type: 6
-      Amount: 5
     - Type: 7
+      Amount: 5
+    - Type: 8
       Amount: 10

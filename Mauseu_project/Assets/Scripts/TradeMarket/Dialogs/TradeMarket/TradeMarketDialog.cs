@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Dependencies.ChaserLib.Dialogs;
 using Dependencies.ChaserLib.ServiceLocator;
 using Services.Inventory;
@@ -29,10 +30,11 @@ namespace TradeMarket.Dialogs.TradeMarket
             UpdateWallet();
        
             var monstersData = _itemsData.GetAllItemsInCategory(ItemCategory.Monsters);
+            var allUniqItems = InventoryService.GetAllUniqItems();
             
             foreach (var monster in monstersData)
             {
-                var amountInInventory = InventoryService.GetAmount(monster.Type);
+                var amountInInventory = allUniqItems.Count(i => i.Type == monster.Type);
                 
                 if (amountInInventory == 0)
                     continue;

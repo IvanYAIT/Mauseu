@@ -27,7 +27,7 @@ namespace Services.Forge
             WeaponService.Upgrade(id);
         }
 
-        public bool CanUpgrade(Guid id, int level)
+        public bool CanUpgrade(Guid id)
         {
             if (WeaponService.IsMaxLevel(id))
                 return false;

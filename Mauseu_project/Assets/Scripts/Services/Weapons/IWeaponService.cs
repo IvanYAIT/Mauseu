@@ -7,7 +7,7 @@ namespace Services.Weapons
 {
     public interface IWeaponService
     {
-        public void Add(ItemType type, int level);
+        public void Add(ItemType type, int level, Guid id);
 
         public void Remove(Guid id);
 

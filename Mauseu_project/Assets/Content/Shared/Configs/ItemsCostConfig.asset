@@ -23,7 +23,7 @@ MonoBehaviour:
     Cost: 150
     Valuability: 10
     HasFlexiblePrice: 1
-  - Type: 6
+  - Type: 4
     Category: 2
     Cost: 1000
     Valuability: 1

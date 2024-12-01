@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8958f15b31c24756a80220b9a9cb30c5, type: 3}
   m_Name: WeaponsData
   m_EditorClassIdentifier: 
-  Weapons:
+  _weapons:
   - WeaponType: 0
     CharacteristicsData: {fileID: 11400000, guid: 577badf9caa46bc4a8b4882540553db1,
       type: 2}

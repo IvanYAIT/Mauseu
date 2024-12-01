@@ -1,3 +1,4 @@
+using System;
 using Services.Inventory.Items;
 using Services.TradeMarket.Data;
 
@@ -12,5 +13,7 @@ namespace Services.TradeMarket
         public void SellItem(ItemType itemType);
 
         public void SellItem(ItemType itemType, int amount);
+
+        public void SellItem(Guid id);
     }
 }

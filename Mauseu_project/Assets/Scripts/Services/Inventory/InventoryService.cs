@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Services.Inventory.Commands;
 using Services.Inventory.Data;
@@ -24,7 +25,9 @@ namespace Services.Inventory
         public UniqItems GetAllUniqItems() => _uniqItems;
 
         public int GetAmount(ItemType type) => _stackableItems[type];
-
+        
+        public UniqItem[] GetUniqItems(ItemType type) => _uniqItems.Where(i=>i.Type == type).ToArray();
+        
         public void AddItem(ItemType type, int amount)
         {
             if (!_stackableItems.ContainsKey(type))

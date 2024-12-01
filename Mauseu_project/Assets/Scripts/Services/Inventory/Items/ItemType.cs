@@ -6,10 +6,10 @@
         TestWeapon2 = 1,
         TestMonster1 = 2,
         TestMonster2 = 3,
-        TestMonster3 = 6,
-        TestConsumable1 = 4,
-        TestConsumable2 = 5,
-        TestResource1 = 6,
-        TestResource2 = 7,
+        TestMonster3 = 4,
+        TestConsumable1 = 5,
+        TestConsumable2 = 6,
+        TestResource1 = 7,
+        TestResource2 = 8,
     }
 }

@@ -31,6 +31,7 @@ namespace TradeMarket
             var walletService = LoadWallet();
             var tradeService = LoadTradeService();
             var weaponService = LoadWeaponService();
+            var forgeService = LoadForgeService();
             
             Locator.Add<IDialogsLauncher>(_dialogsLauncher);
             Locator.Add<ICancellationTokenFactory>(tokenFactory);
@@ -38,7 +39,7 @@ namespace TradeMarket
             Locator.Add(walletService);
             Locator.Add(tradeService);
             Locator.Add(weaponService);
-            Locator.Add(new ForgeService());
+            Locator.Add(forgeService);
         }
 
         private static IInventoryService LoadInventory()
@@ -64,6 +65,11 @@ namespace TradeMarket
         {
             var data = new LoadWeaponDataCommand().Execute();
             return new WeaponService(data, _weaponsData);
+        }
+
+        private IForgeService LoadForgeService()
+        {
+            return new ForgeService();
         }
     }
 }

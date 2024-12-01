@@ -3,7 +3,7 @@
 namespace Services.Weapons.Data
 {
     [System.Serializable]
-    public class Resource
+    public struct Resource
     {
         public ItemType Type;
         public int Amount;
