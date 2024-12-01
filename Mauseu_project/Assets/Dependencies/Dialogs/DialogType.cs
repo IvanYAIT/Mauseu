@@ -7,5 +7,6 @@ namespace Dependencies.ChaserLib.Dialogs
         TradeMarket = 2,
         Loadout = 3,
         ApplicationQuit = 4,
+        Forge = 5,
     }
 }

@@ -1,4 +1,5 @@
-﻿using Services.Inventory.Items;
+﻿using Services.Inventory.Data;
+using Services.Inventory.Items;
 using Shared.DataProvider.Commands;
 
 namespace Services.Inventory.Commands

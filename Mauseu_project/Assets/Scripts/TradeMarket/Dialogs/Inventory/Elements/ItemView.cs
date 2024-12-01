@@ -12,7 +12,7 @@ namespace TradeMarket.Dialogs.Inventory.Elements
         private string _name;
         private string _description;
 
-        public void SetData(string name, string description, Sprite icon, int amount)
+        public void SetData(string name, string description, Sprite icon, int amount = 1)
         {
             _name = name;
             _description = description;

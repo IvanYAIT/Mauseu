@@ -1,0 +1,19 @@
+{
+    "name": "Services.Forge",
+    "rootNamespace": "",
+    "references": [
+        "GUID:53fa91a7de9f32548b2e4ac06655bdad",
+        "GUID:89eb0d5ab98a4bb4a9dfdb2e97770b81",
+        "GUID:9f9579c1dac77c44493fb52b6fec6d8f",
+        "GUID:e030107ca5f28b549ba87dff10369708"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

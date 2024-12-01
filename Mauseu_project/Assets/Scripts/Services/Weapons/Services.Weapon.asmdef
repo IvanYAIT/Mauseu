@@ -1,0 +1,14 @@
+{
+    "name": "Services.Weapon",
+    "rootNamespace": "",
+    "references": ["GUID:53fa91a7de9f32548b2e4ac06655bdad","GUID:e7d1ee7ede0a5274cb8e217140bb0957"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

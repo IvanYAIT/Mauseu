@@ -9,5 +9,7 @@
         TestMonster3 = 6,
         TestConsumable1 = 4,
         TestConsumable2 = 5,
+        TestResource1 = 6,
+        TestResource2 = 7,
     }
 }

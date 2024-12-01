@@ -3,7 +3,6 @@ using Dependencies.ChaserLib.Dialogs;
 using Dependencies.ChaserLib.ServiceLocator;
 using Services.Inventory;
 using Services.Inventory.Items;
-using Services.Inventory.Monsters;
 using Services.TradeMarket;
 using Services.Wallet;
 using TMPro;
@@ -16,7 +15,6 @@ namespace TradeMarket.Dialogs.TradeMarket
         [SerializeField] private TMP_Text _wallet;
         [SerializeField] private MonsterView _prefab;
         [SerializeField] private Transform _container;
-        [SerializeField] private MonstersData _monstersData;
         [SerializeField] private ItemsData _itemsData;
 
         private static ServiceLocator Locator => ServiceLocator.Instance;
@@ -41,11 +39,10 @@ namespace TradeMarket.Dialogs.TradeMarket
 
                 for (var i = 0; i < amountInInventory; i++)
                 {
-                    var data = _monstersData.GetDataByType(monster.Type);
                     var view = Instantiate(_prefab, _container);
-                    var price = TradeService.GetPrice(data.ItemType);
+                    var price = TradeService.GetPrice(monster.Type);
                     
-                    view.SetData(data.ItemType, data.Icon, data.Name, data.Description, price);
+                    view.SetData(monster.Type, monster.Icon, monster.Name, monster.Description, price);
                     view.OnSellClickedSignal.AddListener(SellMonster);
                     _instances.Add(view);
                 }

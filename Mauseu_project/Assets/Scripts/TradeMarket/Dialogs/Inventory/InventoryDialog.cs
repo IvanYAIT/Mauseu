@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Dependencies.ChaserLib.Dialogs;
 using Dependencies.ChaserLib.ServiceLocator;
 using Services.Inventory;
-using Services.Inventory.Commands;
 using Services.Inventory.Items;
 using TradeMarket.Dialogs.Inventory.Elements;
 using UnityEngine;
@@ -28,9 +27,9 @@ namespace TradeMarket.Dialogs.Inventory
         private static IInventoryService InventoryService => Locator.Get<IInventoryService>();
 
         private readonly Dictionary<ItemCategory, List<ItemView>> _itemsByCategory = new();
-        
+
         private ItemCategory _currentItemCategory;
-        
+
         public override void Show()
         {
             foreach (var category in _categories)
@@ -45,48 +44,55 @@ namespace TradeMarket.Dialogs.Inventory
                 });
             }
 
-            var items = InventoryService.GetAllItems();
-            
+            var stackableItems = InventoryService.GetAllStackableItems();
+            var uniqItems = InventoryService.GetAllUniqItems();
+
             _itemsByCategory.Add(ItemCategory.Weapon, new List<ItemView>());
             _itemsByCategory.Add(ItemCategory.Consumables, new List<ItemView>());
             _itemsByCategory.Add(ItemCategory.Monsters, new List<ItemView>());
-            
-            foreach (var item in items)
+            _itemsByCategory.Add(ItemCategory.Resources, new List<ItemView>());
+
+            foreach (var item in stackableItems)
             {
-                var data = _itemsData.GetItemData(item.Key);
-                var instance = Instantiate(_itemPrefab, _itemsContainer);
-                instance.SetData(data.Name, data.Description, data.Icon, item.Value);
-                instance.gameObject.SetActive(false);
-                
-                _itemsByCategory[data.Category].Add(instance);
+                InstantiateItem(item.Key, item.Value);
             }
-            
+
+            foreach (var item in uniqItems)
+            {
+                InstantiateItem(item.Type);
+            }
+
             ShowCategory(ItemCategory.Weapon);
             base.Show();
         }
 
-        public override void Hide()
+        private void InstantiateItem(ItemType type, int amount = 1)
         {
-            new SaveInventoryDataCommand(InventoryService.GetAllItems()).Execute();
-            base.Hide();
+            var data = _itemsData.GetItemData(type);
+            var instance = Instantiate(_itemPrefab, _itemsContainer);
+            instance.SetData(data.Name, data.Description, data.Icon, amount);
+            instance.gameObject.SetActive(false);
+
+            _itemsByCategory[data.Category].Add(instance);
         }
 
         private void DisableCurrentCategory()
         {
-            var items = _itemsByCategory[_currentItemCategory];
-            foreach (var item in items)
-            {
-                item.gameObject.SetActive(false);
-            }
+            SetActiveCategory(_currentItemCategory, false);
         }
 
         private void ShowCategory(ItemCategory newCategory)
         {
             _currentItemCategory = newCategory;
-            var items = _itemsByCategory[newCategory];
+            SetActiveCategory(newCategory, true);
+        }
+
+        private void SetActiveCategory(ItemCategory category, bool state)
+        {
+            var items = _itemsByCategory[category];
             foreach (var item in items)
             {
-                item.gameObject.SetActive(true);
+                item.gameObject.SetActive(state);
             }
         }
     }
