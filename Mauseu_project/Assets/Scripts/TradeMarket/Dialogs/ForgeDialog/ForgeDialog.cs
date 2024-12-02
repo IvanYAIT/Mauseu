@@ -35,17 +35,8 @@ namespace TradeMarket.Dialogs.ForgeDialog
 
         public override void Show()
         {
-            _walletLabel.text = WalletService.Get().ToString();
-
-            foreach (var resource in _userResources)
-            {
-                var amount = InventoryService.GetAmount(resource.Type);
-                resource.AmountLabel.text = amount.ToString();
-
-                var icon = _itemsData.GetItemData(resource.Type).Icon;
-                resource.Icon.sprite = icon;
-            }
-
+            UpdateUserResource();
+            
             var userWeapon = WeaponService.GetAllUserWeapon();
 
             foreach (var weaponData in userWeapon)
@@ -64,7 +55,7 @@ namespace TradeMarket.Dialogs.ForgeDialog
             
             base.Show();
         }
-
+        
         private void SelectWeapon(Guid id)
         {
             var weaponData = WeaponService.GetById(id);
@@ -72,7 +63,7 @@ namespace TradeMarket.Dialogs.ForgeDialog
 
             var canUpgrade = ForgeService.CanUpgrade(id);
             var isMaxLevel = WeaponService.IsMaxLevel(id);
-            _upgradeButton.interactable = !canUpgrade;
+            _upgradeButton.interactable = canUpgrade;
 
             var upgrade = isMaxLevel
                 ? current
@@ -101,6 +92,32 @@ namespace TradeMarket.Dialogs.ForgeDialog
 
             ForgeService.Upgrade(_selectedId);
             SelectWeapon(_selectedId);
+            UpdateViews();
+        }
+
+        private void UpdateViews()
+        {
+            foreach (var instance in _weaponInstances)
+            {
+                var level = WeaponService.GetCurrentLevel(instance.Id);
+                instance.SetLevel(level);
+            }
+
+            UpdateUserResource();
+        }
+        
+        private void UpdateUserResource()
+        {
+            _walletLabel.text = WalletService.Get().ToString();
+
+            foreach (var resource in _userResources)
+            {
+                var amount = InventoryService.GetAmount(resource.Type);
+                resource.AmountLabel.text = amount.ToString();
+
+                var icon = _itemsData.GetItemData(resource.Type).Icon;
+                resource.Icon.sprite = icon;
+            }
         }
     }
 }

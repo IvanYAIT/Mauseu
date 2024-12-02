@@ -55,7 +55,7 @@ namespace Services.Weapons
         {
             var currentLevel = GetCurrentLevel(id);
             var type = GetById(id).Type;
-            var maxLevel = _weaponsData.GetByType(type).CharacteristicsData.GetLevelsAmount();
+            var maxLevel = _weaponsData.GetByType(type).CharacteristicsData.GetLevelsAmount() - 1;
             return currentLevel == maxLevel;
         }
 

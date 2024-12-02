@@ -654,7 +654,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!225 &586310665639214348
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -739,10 +739,10 @@ MonoBehaviour:
   _walletLabel: {fileID: 6362609337645433746}
   _upgradeButton: {fileID: 6509028244705345092}
   _userResources:
-  - Type: 6
+  - Type: 7
     AmountLabel: {fileID: 5110608821856121186}
     Icon: {fileID: 7338196938898005419}
-  - Type: 7
+  - Type: 8
     AmountLabel: {fileID: 1212648759329480678}
     Icon: {fileID: 3741986643889828655}
 --- !u!1 &2664459486480134369
