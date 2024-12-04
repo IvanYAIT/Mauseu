@@ -2391,7 +2391,7 @@ PrefabInstance:
     - target: {fileID: 1159143144906401996, guid: e5c8978e26fa4e144aa0a6d3b8429a7e,
         type: 3}
       propertyPath: m_text
-      value: Damage
+      value: Fire rate
       objectReference: {fileID: 0}
     - target: {fileID: 1159143144906401996, guid: e5c8978e26fa4e144aa0a6d3b8429a7e,
         type: 3}
