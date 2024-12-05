@@ -10,26 +10,25 @@ using UnityEngine.SceneManagement;
 public class Truck : MonoBehaviour
 {
     [SerializeField] private LayerMask playerLayerMask;
-
-    private List<ItemType> _collectedMonsters;
+    [SerializeField] private string _hubSceneName;
+    
+    private readonly List<ItemType> _collectedMonsters = new();
+    
+    private static ServiceLocator Locator => ServiceLocator.Instance;
+    private static IInventoryService InventoryService => Locator.Get<IInventoryService>();
+    
     private Inventory _playerInventory;
     private int _playerLayre;
-    private IInventoryService _inventory;
 
-    void Start()
-    {
-        _inventory = ServiceLocator.Instance.Get<IInventoryService>();
-        _playerLayre = (int)Mathf.Log(playerLayerMask.value, 2);
-    }
+    private void Start() => _playerLayre = (int)Mathf.Log(playerLayerMask.value, 2);
 
-    void Update()
+    private void Update()
     {
         if(_playerInventory != null)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                ItemType currentMosnter;
-                if(_playerInventory.PutMonster(out currentMosnter))
+                if(_playerInventory.PutMonster(out var currentMosnter))
                 {
                     _collectedMonsters.Add(currentMosnter);
                 }
@@ -38,9 +37,10 @@ public class Truck : MonoBehaviour
             {
                 foreach (var monster in _collectedMonsters)
                 {
-                    _inventory.AddItem(monster, Guid.NewGuid());
+                    InventoryService.AddItem(monster, Guid.NewGuid());
                 }
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+                
+                SceneManager.LoadScene(_hubSceneName);
             }
         }
     }

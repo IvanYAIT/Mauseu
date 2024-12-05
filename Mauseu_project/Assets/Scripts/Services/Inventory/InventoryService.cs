@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Services.Inventory.Commands;
 using Services.Inventory.Data;
@@ -12,7 +11,7 @@ namespace Services.Inventory
         private readonly InventoryData _inventoryData;
         private readonly StackableItems _stackableItems;
         private readonly UniqItems _uniqItems;
-        
+
         public InventoryService(InventoryData inventoryData)
         {
             _inventoryData = inventoryData;
@@ -24,10 +23,17 @@ namespace Services.Inventory
 
         public UniqItems GetAllUniqItems() => _uniqItems;
 
-        public int GetAmount(ItemType type) => _stackableItems[type];
-        
-        public UniqItem[] GetUniqItems(ItemType type) => _uniqItems.Where(i=>i.Type == type).ToArray();
-        
+        public int GetAmount(ItemType type)
+        {
+            if (!_stackableItems.ContainsKey(type))
+                _stackableItems.Add(type, 0);
+
+            return _stackableItems[type];
+        }
+
+        public UniqItem[] GetUniqItems(ItemType type) =>
+            _uniqItems.Where(i => i.Type == type).ToArray();
+
         public void AddItem(ItemType type, int amount)
         {
             if (!_stackableItems.ContainsKey(type))
@@ -60,7 +66,7 @@ namespace Services.Inventory
         {
             var item = _uniqItems.First(i => i.Id == id);
             _uniqItems.Remove(item);
-            
+
             Save();
         }
 

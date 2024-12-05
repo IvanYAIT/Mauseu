@@ -1,3 +1,4 @@
+using System;
 using FrostLib.Signals.impl;
 using Services.Inventory.Items;
 using TMPro;
@@ -13,18 +14,21 @@ namespace TradeMarket.Dialogs.TradeMarket
         [SerializeField] private TMP_Text _priceLabel;
 
         public ItemType MonsterType { get; private set; }
-
-        private string _description;
+        public Guid Id { get; private set; }
 
         public readonly Signal<MonsterView> OnSellClickedSignal = new();
 
+        private string _description;
+
         public void SetData(ItemType monsterType, Sprite icon, string monsterName,
-            string monsterDescription, int monsterPrice)
+            string monsterDescription, int monsterPrice, Guid id)
         {
             _icon.sprite = icon;
             _nameLabel.text = monsterName;
             MonsterType = monsterType;
             _description = monsterDescription;
+            Id = id;
+                
             SetPrice(monsterPrice);
         }
 

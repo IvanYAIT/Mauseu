@@ -50,9 +50,10 @@ namespace TradeMarket.Dialogs.ForgeDialog
 
                 _weaponInstances.Add(instance);
             }
-        
-            SelectWeapon(userWeapon.First().Id);
-            
+
+            if (userWeapon.Any())
+                SelectWeapon(userWeapon.First().Id);
+
             base.Show();
         }
         

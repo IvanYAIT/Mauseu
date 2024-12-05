@@ -1,4 +1,5 @@
 ﻿using Services.Inventory.Data;
+using Services.Inventory.Items;
 using Shared.DataProvider.Commands;
 
 namespace Services.Inventory.Commands
@@ -7,9 +8,15 @@ namespace Services.Inventory.Commands
     {
         protected override InventoryData GetDefault()
         {
+            var stackableItems = new StackableItems
+            {
+                { ItemType.TestResource1, 20 },
+                { ItemType.TestResource2, 20 }
+            };
+
             var inventoryData = new InventoryData
             {
-                StackableItems = new StackableItems(),
+                StackableItems = stackableItems,
                 UniqItems = new UniqItems()
             };
             

@@ -34,17 +34,17 @@ namespace TradeMarket.Dialogs.TradeMarket
             
             foreach (var monster in monstersData)
             {
-                var amountInInventory = allUniqItems.Count(i => i.Type == monster.Type);
+                var monstersByType = allUniqItems.Where(i => i.Type == monster.Type).ToArray();
                 
-                if (amountInInventory == 0)
+                if (!monstersByType.Any())
                     continue;
 
-                for (var i = 0; i < amountInInventory; i++)
+                foreach (var uniqMonster in monstersByType)
                 {
                     var view = Instantiate(_prefab, _container);
                     var price = TradeService.GetPrice(monster.Type);
                     
-                    view.SetData(monster.Type, monster.Icon, monster.Name, monster.Description, price);
+                    view.SetData(monster.Type, monster.Icon, monster.Name, monster.Description, price, uniqMonster.Id);
                     view.OnSellClickedSignal.AddListener(SellMonster);
                     _instances.Add(view);
                 }
@@ -57,7 +57,8 @@ namespace TradeMarket.Dialogs.TradeMarket
         {
             var type = view.MonsterType;
             TradeService.SellItem(type);
-
+            InventoryService.RemoveItem(view.Id);
+            
             Destroy(view.gameObject);
             _instances.Remove(view);
             

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Dependencies.ChaserLib.ServiceLocator;
+using Services.Input;
+using UnityEngine;
 
 namespace Infrastructure
 {
@@ -7,17 +9,14 @@ namespace Infrastructure
     {
         [SerializeField] private Services.Character.CharacterController _characterController;
         
-        private Game _game;
-
+        private static ServiceLocator Locator => ServiceLocator.Instance;
+        private static IInputService InputService => Locator.Get<IInputService>();
+        
         public void Awake()
         {
-            _game = new Game(_characterController);
-
+            _characterController.Init(InputService);
+            
             DontDestroyOnLoad(this);
-        }
-
-        private void BindHandlers()
-        {
         }
     }
 }

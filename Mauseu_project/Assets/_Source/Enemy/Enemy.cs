@@ -26,6 +26,9 @@ namespace EnemyAI
         private void Awake()
         {
             navAgent = GetComponent<NavMeshAgent>();
+            var rand = new System.Random();
+            var value = rand.Next(2, 4);
+            monster = (ItemType) value;
         }
 
         private void Update()

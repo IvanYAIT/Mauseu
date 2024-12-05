@@ -258,7 +258,7 @@ MonoBehaviour:
   timeBetweenAttacks: 1
   attackRange: 1.5
   damage: 2
-  monster: 0
+  monster: 3
 --- !u!136 &346195443
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1422,6 +1422,7 @@ MonoBehaviour:
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  _hubSceneName: Hub
 --- !u!1 &1650276988
 GameObject:
   m_ObjectHideFlags: 0
