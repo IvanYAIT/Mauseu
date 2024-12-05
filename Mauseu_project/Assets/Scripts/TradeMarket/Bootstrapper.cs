@@ -1,7 +1,11 @@
 using Dependencies.ChaserLib.Dialogs;
+using Dependencies.ChaserLib.Dialogs.Events;
 using Dependencies.ChaserLib.ServiceLocator;
 using Dependencies.ChaserLib.Tasks;
+using Plugins.EventDispatching.Dispatcher;
 using Services.Forge;
+using Services.Input;
+using Services.Input.Handlers;
 using Services.Inventory;
 using Services.Inventory.Commands;
 using Services.TradeMarket;
@@ -11,6 +15,8 @@ using Services.Wallet;
 using Services.Weapons;
 using Services.Weapons.Commands;
 using Services.Weapons.Data;
+using TradeMarket.Events;
+using TradeMarket.Handlers;
 using UnityEngine;
 
 namespace TradeMarket
@@ -21,8 +27,11 @@ namespace TradeMarket
         [SerializeField] private DialogsLauncher _dialogsLauncher;
         [SerializeField] private DefaultItemsCostConfig _defaultItemsCostConfig;
         [SerializeField] private WeaponsData _weaponsData;
+        [SerializeField] private Services.Character.CharacterController _characterController;
 
         private static ServiceLocator Locator => ServiceLocator.Instance;
+
+        private IEventDispatcher _dispatcher;
 
         public void Start()
         {
@@ -32,7 +41,8 @@ namespace TradeMarket
             var tradeService = LoadTradeService();
             var weaponService = LoadWeaponService();
             var forgeService = LoadForgeService();
-            
+            _dispatcher = LoadEventHandler();
+
             Locator.Add<IDialogsLauncher>(_dialogsLauncher);
             Locator.Add<ICancellationTokenFactory>(tokenFactory);
             Locator.Add(inventoryService);
@@ -40,6 +50,17 @@ namespace TradeMarket
             Locator.Add(tradeService);
             Locator.Add(weaponService);
             Locator.Add(forgeService);
+
+            Locator.Add(_dispatcher);
+
+
+            var inputService = new InputService();
+            Locator.Add<IInputService>(inputService);
+            _characterController.Init(inputService);
+
+            SetupBindings();
+
+            _dispatcher.Raise(new StartGameEvent());
         }
 
         private static IInventoryService LoadInventory()
@@ -67,9 +88,22 @@ namespace TradeMarket
             return new WeaponService(data, _weaponsData);
         }
 
-        private IForgeService LoadForgeService()
+        private static IForgeService LoadForgeService()
         {
             return new ForgeService();
+        }
+
+        private static IEventDispatcher LoadEventHandler()
+        {
+            return new EventDispatcher();
+        }
+
+        private void SetupBindings()
+        {
+            _dispatcher.Bind().Handler<StartGameHandler>().To<StartGameEvent>();
+            
+            _dispatcher.Bind().Handler<CursorHandler>().To<ShowDialogEvent>();
+            _dispatcher.Bind().Handler<CursorHandler>().To<HideDialogEvent>();
         }
     }
 }

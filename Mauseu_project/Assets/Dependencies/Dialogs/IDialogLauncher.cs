@@ -6,5 +6,6 @@ namespace Dependencies.ChaserLib.Dialogs
     {
         T Show<T>(DialogType dialogType);
         GameObject Show(DialogType dialogType);
+        bool HasOpenDialog();
     }
 }
