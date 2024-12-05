@@ -5,22 +5,14 @@ namespace MainMenuUI
 {
     public class HUD : MonoBehaviour
     {
+        [SerializeField] private string _nextSceneName;
+        
         public void Play()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-
-        public void OpenInventory()
-        {
-            
+            SceneManager.LoadScene(_nextSceneName);
         }
         
-        public void OpenTradeMarket()
-        {
-            
-        }
-        
-        private void Exit()
+        public void Exit()
         {
             Application.Quit();
         }
