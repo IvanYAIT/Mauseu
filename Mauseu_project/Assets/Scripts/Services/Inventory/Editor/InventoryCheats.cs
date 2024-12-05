@@ -18,11 +18,11 @@ namespace Services.Inventory.Editor
             var testWeapon1Id = Guid.NewGuid();
             WeaponService.Add(ItemType.TestWeapon1, 0, testWeapon1Id);
 
-            var testWeapon2Id = Guid.NewGuid();
-            WeaponService.Add(ItemType.TestWeapon2, 0, testWeapon2Id);
+            //var testWeapon2Id = Guid.NewGuid();
+            //WeaponService.Add(ItemType.TestWeapon2, 0, testWeapon2Id);
 
             InventoryService.AddItem(ItemType.TestWeapon1, testWeapon1Id);
-            InventoryService.AddItem(ItemType.TestWeapon2, testWeapon2Id);
+            //InventoryService.AddItem(ItemType.TestWeapon2, testWeapon2Id);
 
             InventoryService.AddItem(ItemType.TestMonster1, Guid.NewGuid());
             InventoryService.AddItem(ItemType.TestMonster2, Guid.NewGuid());
