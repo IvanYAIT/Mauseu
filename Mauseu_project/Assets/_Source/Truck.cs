@@ -1,33 +1,46 @@
+﻿using Dependencies.ChaserLib.ServiceLocator;
 using PlayerInventory;
-using System.Collections;
+using Services.Inventory;
+using Services.Inventory.Items;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Truck : MonoBehaviour
 {
     [SerializeField] private LayerMask playerLayerMask;
 
-    private List<MonsterData> _collectedMonsters;
+    private List<ItemType> _collectedMonsters;
     private Inventory _playerInventory;
     private int _playerLayre;
-    
+    private IInventoryService _inventory;
+
     void Start()
     {
+        _inventory = ServiceLocator.Instance.Get<IInventoryService>();
         _playerLayre = (int)Mathf.Log(playerLayerMask.value, 2);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(_playerInventory != null)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                MonsterData currentMosnter;
+                ItemType currentMosnter;
                 if(_playerInventory.PutMonster(out currentMosnter))
                 {
                     _collectedMonsters.Add(currentMosnter);
                 }
+            }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                foreach (var monster in _collectedMonsters)
+                {
+                    _inventory.AddItem(monster, Guid.NewGuid());
+                }
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
             }
         }
     }

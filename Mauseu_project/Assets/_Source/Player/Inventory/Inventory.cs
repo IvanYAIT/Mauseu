@@ -1,3 +1,5 @@
+using Monster;
+using Services.Inventory.Items;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,20 +12,21 @@ namespace PlayerInventory
 
         private List<Item> _items;
         private bool isMonsterPickedUp;
-        private MonsterData _currentMonster;
+        private ItemType _currentMonster;
 
         private void Awake()
         {
             _items = new List<Item>();
         }
 
-        public bool TakeMonster(MonsterData monster)
+        public bool TakeMonster(ItemType monster)
         {
-            if (_currentMonster == null)
+            if (!isMonsterPickedUp)
             {
                 _currentMonster = monster;
                 isMonsterPickedUp = true;
                 monsterIcon.SetActive(true);
+                isMonsterPickedUp = true;
                 return true;
             }
             return false;
@@ -31,25 +34,23 @@ namespace PlayerInventory
 
         public void DropMonster()
         {
-            if(_currentMonster == null)
+            if(isMonsterPickedUp)
             {
-                _currentMonster = null;
                 isMonsterPickedUp = false;
                 monsterIcon.SetActive(false);
             }
         }
 
-        public bool PutMonster(out MonsterData monsterData)
+        public bool PutMonster(out ItemType monsterData)
         {
-            if (_currentMonster == null)
+            if (isMonsterPickedUp)
             {
                 monsterData = _currentMonster;
-                _currentMonster = null;
                 isMonsterPickedUp = false;
                 monsterIcon.SetActive(false);
                 return true;
             }
-            monsterData = null;
+            monsterData = ItemType.TestMonster2;
             return false;
         }
 

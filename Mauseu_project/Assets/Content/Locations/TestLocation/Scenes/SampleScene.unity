@@ -258,7 +258,7 @@ MonoBehaviour:
   timeBetweenAttacks: 1
   attackRange: 1.5
   damage: 2
-  monster: {fileID: 11400000, guid: e7dd9b6803c6c73459030b906283c062, type: 2}
+  monster: 0
 --- !u!136 &346195443
 CapsuleCollider:
   m_ObjectHideFlags: 0
