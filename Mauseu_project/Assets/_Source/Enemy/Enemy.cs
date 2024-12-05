@@ -1,3 +1,4 @@
+using Services.Inventory.Items;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,7 +12,7 @@ namespace EnemyAI
         [SerializeField] private float timeBetweenAttacks;
         [SerializeField] private float attackRange;
         [SerializeField] private int damage;
-        [SerializeField] private MonsterData monster;
+        [SerializeField] private ItemType monster;
 
         private Vector3 _walkPoint;
         private bool walkPointSet;
@@ -21,7 +22,6 @@ namespace EnemyAI
         private bool playerInAttackRange;
         private Vector3 _playerPos;
         private bool isCatched;
-
 
         private void Awake()
         {
@@ -54,7 +54,7 @@ namespace EnemyAI
 
         public bool IsCatched => isCatched;
 
-        public MonsterData GetData() => monster;
+        public ItemType GetData() => monster;
 
         public void IsPlayerInRange(bool value, Vector3 playrePos)
         {
