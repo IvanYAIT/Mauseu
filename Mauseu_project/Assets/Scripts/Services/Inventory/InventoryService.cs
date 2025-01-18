@@ -3,6 +3,7 @@ using System.Linq;
 using Services.Inventory.Commands;
 using Services.Inventory.Data;
 using Services.Inventory.Items;
+using UnityEngine;
 
 namespace Services.Inventory
 {
@@ -17,6 +18,7 @@ namespace Services.Inventory
             _inventoryData = inventoryData;
             _stackableItems = inventoryData.StackableItems;
             _uniqItems = inventoryData.UniqItems;
+            Debug.Log(_uniqItems);
         }
 
         public StackableItems GetAllStackableItems() => _stackableItems;

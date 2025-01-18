@@ -27,6 +27,8 @@ namespace Dependencies.ChaserLib.Dialogs
             SetInteractableState(false);
             _alphaTween.PlayReverse();
             _alphaTween.AddOnFinished(() => Destroy(gameObject));
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         public virtual void OnDestroy() => OnClosedSignal.Dispatch();

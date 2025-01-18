@@ -14,13 +14,18 @@ public class Truck : MonoBehaviour
     
     private readonly List<ItemType> _collectedMonsters = new();
     
-    private static ServiceLocator Locator => ServiceLocator.Instance;
-    private static IInventoryService InventoryService => Locator.Get<IInventoryService>();
+    private static ServiceLocator Locator;
+    private static IInventoryService InventoryService;
     
     private Inventory _playerInventory;
     private int _playerLayre;
 
-    private void Start() => _playerLayre = (int)Mathf.Log(playerLayerMask.value, 2);
+    private void Start()
+    {
+        _playerLayre = (int)Mathf.Log(playerLayerMask.value, 2);
+        Locator = ServiceLocator.Instance;
+        InventoryService = Locator.Get<IInventoryService>();
+    }
 
     private void Update()
     {
@@ -33,10 +38,11 @@ public class Truck : MonoBehaviour
                     _collectedMonsters.Add(currentMosnter);
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 foreach (var monster in _collectedMonsters)
                 {
+                    Debug.Log(monster);
                     InventoryService.AddItem(monster, Guid.NewGuid());
                 }
                 

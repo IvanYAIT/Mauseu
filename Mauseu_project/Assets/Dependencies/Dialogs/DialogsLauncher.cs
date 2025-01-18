@@ -37,6 +37,9 @@ namespace Dependencies.ChaserLib.Dialogs
             var dialog = instance.GetComponent<DialogBase>();
             var token = TokenFactory.GetDialogClosingToken(dialog.OnClosedSignal);
 
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
             dialog.Show();
             dialog.AddCancellationToken(token);
             dialog.GetComponent<Canvas>().sortingOrder = ++_currentSortingOrder;
