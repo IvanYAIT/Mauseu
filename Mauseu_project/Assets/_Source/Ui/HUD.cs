@@ -11,7 +11,7 @@ namespace MainMenuUI
         {
             SceneManager.LoadScene(_nextSceneName);
         }
-        
+
         public void Exit()
         {
             Application.Quit();
