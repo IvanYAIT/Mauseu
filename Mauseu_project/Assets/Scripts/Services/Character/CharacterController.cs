@@ -91,10 +91,13 @@ namespace Services.Character
     
         private void HandleMouseLock()
         {
-            _rotationX -= UnityEngine.Input.GetAxis("Mouse Y") * _lookSpeedY;
-            _rotationX = Mathf.Clamp(_rotationX, -_upperLookLimit, _lowerLookLimit);
-            _playerCamera.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, UnityEngine.Input.GetAxis("Mouse X") * _lookSpeedX, 0);
+            if (!Cursor.visible)
+            {
+                _rotationX -= UnityEngine.Input.GetAxis("Mouse Y") * _lookSpeedY;
+                _rotationX = Mathf.Clamp(_rotationX, -_upperLookLimit, _lowerLookLimit);
+                _playerCamera.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
+                transform.rotation *= Quaternion.Euler(0, UnityEngine.Input.GetAxis("Mouse X") * _lookSpeedX, 0);
+            }
         }
 
         private void ApplyFinalMovements()
