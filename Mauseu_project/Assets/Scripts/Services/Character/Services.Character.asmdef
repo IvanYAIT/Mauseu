@@ -2,7 +2,9 @@
     "name": "Services.Character",
     "rootNamespace": "",
     "references": [
-        "GUID:c9ff3036785475e4889cd17009ee603c"
+        "GUID:c9ff3036785475e4889cd17009ee603c",
+        "GUID:57c32fc907df0f54e8e6e8f0d2488336",
+        "GUID:831409e8f9d13b5479a3baef9822ad34"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

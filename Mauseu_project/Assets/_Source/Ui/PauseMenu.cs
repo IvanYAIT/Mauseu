@@ -19,7 +19,7 @@ public class PauseMenu : MonoBehaviour
     private void Update()
     {
         //if(Input.GetKey(KeyCode.Escape))
-        if(Input.GetKeyDown(KeyCode.Tab))
+        if(Input.GetKeyDown(KeyCode.P))
         {
             if (!pausePanel.activeInHierarchy)
             {

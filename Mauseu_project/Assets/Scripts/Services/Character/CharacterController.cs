@@ -1,9 +1,10 @@
+using Photon.Pun;
 using Services.Input;
 using UnityEngine;
 
 namespace Services.Character
 {
-    public class CharacterController : MonoBehaviour
+    public class CharacterController : MonoBehaviourPun
     {
         //"Movement Parameters"
         [SerializeField] private float _walkSpeed;
@@ -21,14 +22,16 @@ namespace Services.Character
         [field: SerializeField] public bool CanSprint { get; private set; }
         [field: SerializeField] public bool CanJump { get; private set; }
 
-        
+        [SerializeField] private Camera playerCamera;
+
+        public bool IsOwner = false;
+
         private bool IsSprinting => CanSprint && UnityEngine.Input.GetKey(SprintKey);
         private bool IsJumpting => _characterController.isGrounded && UnityEngine.Input.GetKey(JumpKey);
         
         private const KeyCode SprintKey = KeyCode.LeftShift;
         private const KeyCode JumpKey = KeyCode.Space;
 
-        private Camera _playerCamera;
         private UnityEngine.CharacterController _characterController;
 
         private Vector3 _moveDirection;
@@ -38,7 +41,6 @@ namespace Services.Character
         
         private void Awake()
         {
-            _playerCamera = GetComponentInChildren<Camera>();
             _characterController = GetComponent<UnityEngine.CharacterController>();
 
             Cursor.lockState = CursorLockMode.Locked;
@@ -52,11 +54,14 @@ namespace Services.Character
         
         private void Update()
         {
+            if (!IsOwner) return;
+
             if (!CanMove)
                 return;
 
             HandleMovementInput();
-            HandleMouseLock();
+            if(playerCamera != null)
+                HandleMouseLock();
         
             if(CanJump)
                 HandleJump();
@@ -71,7 +76,7 @@ namespace Services.Character
             var vertical = currentSpeed * _inputService.Vertical;
 
             var test = currentSpeed * _inputService.Axis;
-
+            Debug.Log(test);
             _currentInput = test;//new Vector2(vertical, horizontal);
 
             var moveDirectionY = _moveDirection.y;
@@ -95,7 +100,7 @@ namespace Services.Character
             {
                 _rotationX -= UnityEngine.Input.GetAxis("Mouse Y") * _lookSpeedY;
                 _rotationX = Mathf.Clamp(_rotationX, -_upperLookLimit, _lowerLookLimit);
-                _playerCamera.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
+                playerCamera.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
                 transform.rotation *= Quaternion.Euler(0, UnityEngine.Input.GetAxis("Mouse X") * _lookSpeedX, 0);
             }
         }

@@ -21,7 +21,16 @@ namespace TradeMarket.Characrer
             if (interactable == null)
                 return;
 
-            interactable.Interract();
+            if (interactable.GetType() == typeof(PlayersReadyCheck))
+            {
+                Debug.Log("interact");
+                PlayersReadyCheck playersReadyCheck = (PlayersReadyCheck)interactable;
+                playersReadyCheck.Interract(GetComponent<Ready>());
+            }
+            else
+            {
+                interactable.Interract();
+            }
         }
     }
 }

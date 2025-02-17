@@ -27,7 +27,6 @@ namespace TradeMarket
         [SerializeField] private DialogsLauncher _dialogsLauncher;
         [SerializeField] private DefaultItemsCostConfig _defaultItemsCostConfig;
         [SerializeField] private WeaponsData _weaponsData;
-        [SerializeField] private Services.Character.CharacterController _characterController;
 
         private static ServiceLocator Locator => ServiceLocator.Instance;
 
@@ -53,14 +52,14 @@ namespace TradeMarket
 
             Locator.Add(_dispatcher);
 
-
-            var inputService = new InputService();
-            Locator.Add<IInputService>(inputService);
-            _characterController.Init(inputService);
-
             SetupBindings();
 
             _dispatcher.Raise(new StartGameEvent());
+        }
+
+        private void Update()
+        {
+            
         }
 
         private static IInventoryService LoadInventory()
