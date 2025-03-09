@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,15 @@ namespace PlayerInventory
         void Update()
         {
 
+        }
+
+        public void DisableItem() =>
+            GetComponent<PhotonView>().RPC("Disable", RpcTarget.AllBuffered);
+
+        [PunRPC]
+        private void Disable()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

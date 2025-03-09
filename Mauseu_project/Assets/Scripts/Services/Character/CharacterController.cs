@@ -76,7 +76,6 @@ namespace Services.Character
             var vertical = currentSpeed * _inputService.Vertical;
 
             var test = currentSpeed * _inputService.Axis;
-            Debug.Log(test);
             _currentInput = test;//new Vector2(vertical, horizontal);
 
             var moveDirectionY = _moveDirection.y;

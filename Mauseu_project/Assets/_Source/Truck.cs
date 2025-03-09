@@ -38,16 +38,15 @@ public class Truck : MonoBehaviour
                     _collectedMonsters.Add(currentMosnter);
                 }
             }
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                foreach (var monster in _collectedMonsters)
-                {
-                    Debug.Log(monster);
-                    InventoryService.AddItem(monster, Guid.NewGuid());
-                }
-                
-                SceneManager.LoadScene(_hubSceneName);
-            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var monster in _collectedMonsters)
+        {
+            Debug.Log(monster);
+            InventoryService.AddItem(monster, Guid.NewGuid());
         }
     }
 

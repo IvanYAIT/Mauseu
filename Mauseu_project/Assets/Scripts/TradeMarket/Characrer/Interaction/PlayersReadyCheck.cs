@@ -10,6 +10,7 @@ public class PlayersReadyCheck : InteractableItemComponentBase
     private ReadinessPanel _readiness;
     private int interacts;
     private ExitGames.Client.Photon.Hashtable properties;
+
     void Start()
     {
         _readiness = readinessPanel.GetComponent<ReadinessPanel>();

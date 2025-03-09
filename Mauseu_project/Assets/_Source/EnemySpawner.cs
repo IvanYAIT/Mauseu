@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -7,9 +8,11 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
         foreach (Transform spawnPoint in enemySpawnPoints)
         {
-            Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], spawnPoint.position, Quaternion.identity);
+            PhotonNetwork.Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)].name, spawnPoint.position, Quaternion.identity);
         }
     }
 }

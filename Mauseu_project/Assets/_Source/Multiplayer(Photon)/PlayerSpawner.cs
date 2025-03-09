@@ -1,33 +1,33 @@
-using Photon.Pun;
-using UnityEngine;
-using Services.Input;
 using Dependencies.ChaserLib.ServiceLocator;
-using UnityEngine.SceneManagement;
+using Photon.Pun;
+using Services.Input;
+using System.Collections;
+using UnityEngine;
 
-public class PlayerSpawnController : MonoBehaviourPunCallbacks
+public class PlayerSpawner : MonoBehaviourPunCallbacks
 {
     private const string PLAYER_PREFAB_NAME = "FirstPersonController";
     private static ServiceLocator Locator => ServiceLocator.Instance;
 
     [SerializeField] private Transform[] spawnPoints;
 
-    private void Awake()
+    private void Start()
     {
-        if (PhotonNetwork.LocalPlayer.IsLocal)
-            SpawnPlayer();
-        PhotonNetwork.AutomaticallySyncScene = true;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            StartCoroutine(SpawnAllPlayers());
+        }
     }
 
-    //public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
-    //{
-    //    if (PhotonNetwork.CurrentRoom != null && PhotonNetwork.CurrentRoom.IsOpen)
-    //    {
-    //        if (Application.loadedLevelName == SceneManager.GetActiveScene().name)
-    //        {
-    //            SpawnPlayer();
-    //        }
-    //    }
-    //}
+    private IEnumerator SpawnAllPlayers()
+    {
+        yield return new WaitForSeconds(1f);
+
+        foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
+        {
+            SpawnPlayer();
+        }
+    }
 
     private void SpawnPlayer()
     {
@@ -57,6 +57,4 @@ public class PlayerSpawnController : MonoBehaviourPunCallbacks
 
         return spawnPoint;
     }
-
-
 }

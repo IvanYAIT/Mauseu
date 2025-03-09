@@ -1,3 +1,4 @@
+using Photon.Pun;
 using Services.Inventory.Items;
 using UnityEngine;
 using UnityEngine.AI;
@@ -141,7 +142,24 @@ namespace EnemyAI
             alreadyAttacked = false;
         }
 
+        public void DisableMonster() =>
+            GetComponent<PhotonView>().RPC("Disable", RpcTarget.AllBuffered);
+
+        [PunRPC]
+        private void Disable()
+        {
+            Debug.Log("Disable");
+            gameObject.SetActive(false);
+        }
+
         public void IsCateched()
+        {
+            if(!isCatched)
+                GetComponent<PhotonView>().RPC("Death", RpcTarget.AllBuffered);
+        }
+
+        [PunRPC]
+        private void Death()
         {
             isCatched = true;
             navAgent.ResetPath();

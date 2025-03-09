@@ -51,6 +51,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined Room!");
+        //if(PhotonNetwork.IsMasterClient)
         PhotonNetwork.LoadLevel(HUB_SCENE_NAME);
     }
 }

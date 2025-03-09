@@ -32,12 +32,12 @@ public class ReadinessPanel : MonoBehaviour
             }
             else
             {
-                PhotonNetwork.LoadLevel(_sceneName);
+                LoadNextLevel(_sceneName);
             }
             if (_readyCount >= PhotonNetwork.CurrentRoom.PlayerCount)
             {
                 isStart = false;
-                PhotonNetwork.LoadLevel(_sceneName);
+                LoadNextLevel(_sceneName);
             }
         }
         
@@ -82,7 +82,21 @@ public class ReadinessPanel : MonoBehaviour
         CreateIcons();
     }
 
-    private void CreateIcons()
+    private void LoadNextLevel(string levelName)
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var player in players)
+            {
+                PhotonNetwork.Destroy(player);
+            }
+
+            PhotonNetwork.LoadLevel(levelName);
+        }
+    }
+
+        private void CreateIcons()
     {
         for (int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount; i++)
         {
