@@ -7,9 +7,14 @@ namespace Player
         [SerializeField] private Transform shootPoint;
         [SerializeField] private GameObject bulletPrefab;
 
+        public bool IsOwner;
+
         void Update()
         {
-            if(Input.GetMouseButtonDown(0))
+            if (!IsOwner)
+                return;
+
+            if (Input.GetMouseButtonDown(0))
             {
                 Shoot();
             }

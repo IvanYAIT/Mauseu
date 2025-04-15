@@ -16,12 +16,15 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         playBtn.onClick.AddListener(Connect);
         nicknameInput.onEndEdit.AddListener(delegate { SetNickname(); });
+        PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.ConnectToRegion("ru");
     }
 
     private void Connect()
     {
         connectingPanel.SetActive(true);
-        PhotonNetwork.ConnectUsingSettings();
+        SetNickname();
+        PhotonNetwork.JoinRandomRoom();
     }
 
     private void SetNickname()
@@ -37,15 +40,18 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
+        playBtn.interactable = true;
         Debug.Log("Connected to Photon!");
-        SetNickname();
-        PhotonNetwork.JoinRandomRoom();
+        if (!PhotonNetwork.InLobby)
+            PhotonNetwork.JoinLobby();
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log("No rooms found, creating a new one...");
-        PhotonNetwork.CreateRoom(null);
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = 4;
+        PhotonNetwork.CreateRoom("Test", roomOptions, TypedLobby.Default);
     }
 
     public override void OnJoinedRoom()

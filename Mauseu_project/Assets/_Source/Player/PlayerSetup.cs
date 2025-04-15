@@ -1,4 +1,5 @@
 using Photon.Pun;
+using Player;
 using PlayerInventory;
 using Services.Input;
 using UnityEngine;
@@ -11,12 +12,14 @@ public class PlayerSetup : MonoBehaviour
     [SerializeField] private GameObject nicknameText;
     [SerializeField] private GameObject camera;
     [SerializeField] private GameObject canvas;
+    [SerializeField] private Gun gun;
 
     public void Init(IInputService inputService)
     {
         controller.Init(inputService);
         controller.IsOwner = true;
         pickUpSystem.IsOwner = true;
+        gun.IsOwner = true;
         nickname.SetNickname(PhotonNetwork.NickName);
         camera.SetActive(true);
         canvas.SetActive(true);
