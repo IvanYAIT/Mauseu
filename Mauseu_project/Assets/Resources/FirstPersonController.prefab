@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 1198876492266944491}
   - component: {fileID: 7340979880490808435}
   - component: {fileID: 2504189647203237391}
+  - component: {fileID: 2654736492129433468}
   m_Layer: 7
   m_Name: FirstPersonController
   m_TagString: Untagged
@@ -389,6 +390,7 @@ MonoBehaviour:
   controller: {fileID: 7838249637731582004}
   nickname: {fileID: 5117132347324464300}
   pickUpSystem: {fileID: 7340979880490808435}
+  healthSystem: {fileID: 2654736492129433468}
   nicknameText: {fileID: 1536418174540474176}
   camera: {fileID: 6106501364128923280}
   canvas: {fileID: 7432877126457353689}
@@ -458,6 +460,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotCount: 4
   monsterIcon: {fileID: 9045246968693831906}
+--- !u!114 &2654736492129433468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910718968048574275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d79bb9591e7b440825edc448b00834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  IsOwner: 0
 --- !u!1 &1021094927866514977
 GameObject:
   m_ObjectHideFlags: 0

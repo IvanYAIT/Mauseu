@@ -86,6 +86,7 @@ MonoBehaviour:
   attackRange: 1.5
   damage: 2
   monster: 3
+  health: 100
 --- !u!114 &3800264217343449121
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using Photon.Pun;
 using Services.Inventory.Items;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,6 +15,7 @@ namespace EnemyAI
         [SerializeField] private float attackRange;
         [SerializeField] private int damage;
         [SerializeField] private ItemType monster;
+        [SerializeField] private int health = 100;
 
         private Vector3 _walkPoint;
         private bool walkPointSet;
@@ -23,6 +25,7 @@ namespace EnemyAI
         private bool playerInAttackRange;
         private Vector3 _playerPos;
         private bool isCatched;
+        private bool isAttacking;
 
         private void Awake()
         {
@@ -129,17 +132,39 @@ namespace EnemyAI
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange))
                 {
-                    /*
-                    Player get damage
-                    */
+                    if (!isAttacking)
+                    {
+                        isAttacking = true;
+                        Attack(hit.transform.GetComponent<HealthSystem>());
+                    }
                 }
             }
         }
 
+        private IEnumerator Attack(HealthSystem playerHealth)
+        {
+            playerHealth.GetDamage(damage);
+            yield return new WaitForSeconds(2);
+            isAttacking = false;
+        }
 
         private void ResetAttack()
         {
             alreadyAttacked = false;
+        }
+
+        public void ApplyDamage(int damage) =>
+            GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.AllBuffered, damage);
+
+        [PunRPC]
+        public void GetDamage(int damage)
+        {
+            health -= damage;
+
+            if (health <= 0)
+            {
+                IsCateched();
+            }
         }
 
         public void DisableMonster() =>

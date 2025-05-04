@@ -16,7 +16,6 @@ namespace PlayerInventory
 
         private Item _item;
 
-
         void Update()
         {
             if (!IsOwner)
