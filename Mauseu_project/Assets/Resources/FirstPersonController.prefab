@@ -423,6 +423,7 @@ MonoBehaviour:
   shootPoint: {fileID: 4892631195222709333}
   bulletPrefab: {fileID: 5204870328985444277, guid: 946a8de5d1c92ad4fb9f0dc62734bb0e,
     type: 3}
+  gun: {fileID: 3581332913673465154}
   IsOwner: 0
 --- !u!114 &7340979880490808435
 MonoBehaviour:

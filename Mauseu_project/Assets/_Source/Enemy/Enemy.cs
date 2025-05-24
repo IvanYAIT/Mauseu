@@ -26,6 +26,7 @@ namespace EnemyAI
         private Vector3 _playerPos;
         private bool isCatched;
         private bool isAttacking;
+        public bool isSearchingForPlayer;
 
         private void Awake()
         {
@@ -40,7 +41,9 @@ namespace EnemyAI
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
             if (!isCatched)
             {
-                if (!playerInSightRange && !playerInAttackRange)
+                if (isSearchingForPlayer)
+                    ChasePlayer();
+                else if (!playerInSightRange && !playerInAttackRange)
                 {
                     Patroling();
                 }
@@ -112,7 +115,7 @@ namespace EnemyAI
         {
             navAgent.SetDestination(_playerPos);
             navAgent.isStopped = false;
-            if (!navAgent.hasPath && !playerInAttackRange)
+            if (!navAgent.hasPath && !playerInAttackRange && !isSearchingForPlayer)
             {
                 playerInSightRange = false;
             }
@@ -167,8 +170,19 @@ namespace EnemyAI
             }
         }
 
-        public void DisableMonster() =>
+        public void DisableMonster()
+        {
+            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                float dst = Vector3.Distance(transform.position, enemy.transform.position);
+                if (dst > 25)
+                {
+                    enemy.GetComponent<Enemy>().isSearchingForPlayer = true;
+                    enemy.GetComponent<Enemy>().IsPlayerInRange(true, _playerPos);
+                }
+            }
             GetComponent<PhotonView>().RPC("Disable", RpcTarget.AllBuffered);
+        }
 
         [PunRPC]
         private void Disable()

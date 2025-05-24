@@ -1,4 +1,5 @@
 using Monster;
+using Player;
 using Services.Inventory.Items;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,10 +14,14 @@ namespace PlayerInventory
         private List<Item> _items;
         private bool isMonsterPickedUp;
         private ItemType _currentMonster;
+        private Services.Character.CharacterController _controller;
+        private Gun _gun;
 
         private void Awake()
         {
             _items = new List<Item>();
+            _controller = GetComponent<Services.Character.CharacterController>();
+            _gun = GetComponent<Gun>();
         }
 
         public bool TakeMonster(ItemType monster)
@@ -27,6 +32,8 @@ namespace PlayerInventory
                 isMonsterPickedUp = true;
                 monsterIcon.SetActive(true);
                 isMonsterPickedUp = true;
+                _controller.ChangeMovementSpeed(true);
+                _gun.Hide(true);
                 return true;
             }
             return false;
@@ -38,6 +45,8 @@ namespace PlayerInventory
             {
                 isMonsterPickedUp = false;
                 monsterIcon.SetActive(false);
+                _controller.ChangeMovementSpeed(false);
+                _gun.Hide(false);
             }
         }
 

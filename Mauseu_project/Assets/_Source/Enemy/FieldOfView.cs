@@ -27,7 +27,6 @@ namespace EnemyAI
             StartCoroutine("FindTargetsWithDelay", .2f);
         }
 
-
         IEnumerator FindTargetsWithDelay(float delay)
         {
             while (true)
@@ -46,14 +45,18 @@ namespace EnemyAI
             {
                 Transform target = targetsInViewRadius[i].transform;
                 Vector3 dirToTarget = (target.position - transform.position).normalized;
+                float dstToTarget = Vector3.Distance(transform.position, target.position);
+
                 if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
                 {
-                    float dstToTarget = Vector3.Distance(transform.position, target.position);
-
                     if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                     {
                         visibleTargets.Add(target);
                     }
+                } else if(dstToTarget <= 2f)
+                {
+                    if(target.GetComponent<Services.Character.CharacterController>().IsStealth)
+                        visibleTargets.Add(target);
                 }
             }
             if (visibleTargets.Count > 0)

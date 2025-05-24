@@ -1,7 +1,7 @@
 using EnemyAI;
 using Photon.Pun;
+using Player;
 using UnityEngine;
-
 namespace PlayerInventory
 {
     public class PickUpSystem : MonoBehaviour
@@ -11,9 +11,8 @@ namespace PlayerInventory
         [SerializeField] private LayerMask itemLayerMask;
         [SerializeField] private LayerMask monsterLayerMask;
         [SerializeField] private Inventory inventory;
-
+        
         public bool IsOwner = false;
-
         private Item _item;
 
         void Update()

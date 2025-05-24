@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 3573113970341282111}
   m_Layer: 8
   m_Name: handy-the-abomination
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -285,6 +285,7 @@ MonoBehaviour:
   damage: 2
   monster: 3
   health: 100
+  isSearchingForPlayer: 0
 --- !u!114 &7677632796045711563
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -25,10 +25,13 @@ namespace Services.Character
         [SerializeField] private Camera playerCamera;
 
         public bool IsOwner = false;
+        public bool IsStealth => IsCrouching;
 
-        private bool IsSprinting => CanSprint && UnityEngine.Input.GetKey(SprintKey);
+        private bool IsSprinting => CanSprint && UnityEngine.Input.GetKey(SprintKey) && !IsCrouching;
         private bool IsJumpting => _characterController.isGrounded && UnityEngine.Input.GetKey(JumpKey);
-        
+        private bool IsCrouching => UnityEngine.Input.GetKey(KeyCode.LeftControl);
+
+
         private const KeyCode SprintKey = KeyCode.LeftShift;
         private const KeyCode JumpKey = KeyCode.Space;
 
@@ -38,6 +41,7 @@ namespace Services.Character
         private Vector3 _currentInput;
         private float _rotationX;
         private IInputService _inputService;
+        private float _speedMultiplier = 1;
         
         private void Awake()
         {
@@ -69,9 +73,19 @@ namespace Services.Character
             ApplyFinalMovements();
         }
 
+        public void ChangeMovementSpeed(bool value)
+        {
+            if (value)
+                _speedMultiplier = 0.75f;
+            else
+                _speedMultiplier = 1;
+        }
+
         private void HandleMovementInput()
         {
             var currentSpeed = IsSprinting ? _sprintSpeed : _walkSpeed;
+            if (IsCrouching) ChangeMovementSpeed(true); else ChangeMovementSpeed(false);
+            currentSpeed *= _speedMultiplier;
             var horizontal = currentSpeed * _inputService.Horizontal;
             var vertical = currentSpeed * _inputService.Vertical;
 

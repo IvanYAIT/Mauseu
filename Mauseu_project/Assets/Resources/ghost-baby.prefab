@@ -636,7 +636,7 @@ GameObject:
   - component: {fileID: 7424961151511597120}
   m_Layer: 8
   m_Name: ghost-baby
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -705,6 +705,7 @@ MonoBehaviour:
   damage: 2
   monster: 3
   health: 100
+  isSearchingForPlayer: 0
 --- !u!114 &2978191984194473188
 MonoBehaviour:
   m_ObjectHideFlags: 0

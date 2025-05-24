@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4426689214965700045}
   m_Layer: 8
   m_Name: cry-wolf-game-character
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +87,7 @@ MonoBehaviour:
   damage: 2
   monster: 3
   health: 100
+  isSearchingForPlayer: 0
 --- !u!114 &3800264217343449121
 MonoBehaviour:
   m_ObjectHideFlags: 0

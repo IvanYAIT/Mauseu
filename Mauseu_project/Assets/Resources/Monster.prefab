@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 8238165796372790010}
   m_Layer: 8
   m_Name: Monster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -369,6 +369,7 @@ MonoBehaviour:
   damage: 2
   monster: 3
   health: 100
+  isSearchingForPlayer: 0
 --- !u!114 &6484478722308808084
 MonoBehaviour:
   m_ObjectHideFlags: 0
