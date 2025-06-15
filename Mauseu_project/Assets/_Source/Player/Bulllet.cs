@@ -22,11 +22,12 @@ public class Bulllet : MonoBehaviour
         {
             collision.gameObject.GetComponent<Enemy>().ApplyDamage(damage);
         }
+        StartCoroutine(LifeTime());
     }
 
-    private IEnumerator LifetTime()
+    private IEnumerator LifeTime()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         Destroy(this);
     }
 }
